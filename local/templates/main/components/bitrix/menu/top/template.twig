@@ -1,0 +1,9 @@
+<nav class="top-nav">
+    {% for item in result %}
+        <a href="{{ item.LINK }}"
+           class="top-nav__link {{ item.SELECTED ? 'top-nav__link_selected' }}"
+        >
+            {{ item.TEXT }}
+        </a>
+    {% endfor %}
+</nav>

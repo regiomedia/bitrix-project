@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+use Arrilot\BitrixMigrations\Commands\MakeCommand;
+use Arrilot\BitrixMigrations\Commands\InstallCommand;
+use Arrilot\BitrixMigrations\Commands\MigrateCommand;
+use Arrilot\BitrixMigrations\Commands\RollbackCommand;
+use Arrilot\BitrixMigrations\Commands\TemplatesCommand;
+use Arrilot\BitrixMigrations\Commands\StatusCommand;
+use Arrilot\BitrixMigrations\Migrator;
+use Arrilot\BitrixMigrations\Storages\BitrixDatabaseStorage;
+use Arrilot\BitrixMigrations\TemplatesCollection;
+use Symfony\Component\Console\Application;
+
+define("NOT_CHECK_PERMISSIONS", true);
+$_SERVER["DOCUMENT_ROOT"] = __DIR__;
+$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
+include $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php";
+
+$config = [
+    'table' => 'migrations',
+    'dir' => './migrations',
+];
+
+$database = new BitrixDatabaseStorage($config['table']);
+$templates = new TemplatesCollection();
+$templates->registerBasicTemplates();
+
+$migrator = new Migrator($config, $templates, $database);
+
+$app = new Application('Migrator');
+$app->add(new MakeCommand($migrator));
+$app->add(new InstallCommand($config['table'], $database));
+$app->add(new MigrateCommand($migrator));
+$app->add(new RollbackCommand($migrator));
+$app->add(new TemplatesCommand($templates));
+$app->add(new StatusCommand($migrator));
+$app->run();

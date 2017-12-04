@@ -1,0 +1,38 @@
+{
+  "linters": {
+    "phpSyntax": {
+      "type": "php",
+      "include": "(\\.php$)"
+    },
+    "phpcs": {
+      "type": "phpcs",
+      "include": "/local\\/(classes|components)\\/.*\\.php/i",
+      "exclude": "/local\\/components\\/.*\\/templates\\/.*\\.php/i",
+      "phpcs.standard": "ruleset.xml",
+      "bin": ["./vendor/bin/phpcs"]
+    },
+    "json": {
+      "type": "json",
+      "include": [
+        "(^\\.arcconfig$)",
+        "(^\\.arclint$)",
+        "(\\.json$)"
+      ]
+    },
+    "merge-conflict": {
+      "type": "merge-conflict"
+    },
+    "eslint": {
+      "type": "script-and-regex",
+      "script-and-regex.script": "sh -c 'node ./node_modules/eslint/bin/eslint.js \"$0\"  || true'",
+      "script-and-regex.regex": "/^(\\h+)(?P<line>\\d+):(?P<char>\\d+)(\\h+)(?P<severity>warning|error)(\\h+)(?P<message>.*)(\\h{2,})(?P<code>.*)$/m",
+      "include": "/local\\/assets\\/scripts\\/.*\\.(js|vue)/i"
+    },
+    "stylelint": {
+      "type": "script-and-regex",
+      "script-and-regex.script": "sh -c 'node ./node_modules/stylelint/bin/stylelint.js \"$0\"  || true'",
+      "script-and-regex.regex": "/^(\\h+)(?P<line>\\d+):(?P<char>\\d+)(\\h+)(?P<error>✖)(\\h+)(?P<message>.*)(\\h{1,})(?P<code>.*)$/m",
+      "include": "/local\\/assets\\/styles\\/.*\\.scss/i"
+    }
+  }
+}

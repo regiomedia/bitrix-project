@@ -1,0 +1,31 @@
+{
+    "require": {
+        "arrilot/bitrix-migrations": "^2.2",
+        "arrilot/bitrix-models": "^0.5.0",
+        "maximaster/tools.twig": "^1.1",
+        "bitrix-expert/bbc": "^1.0",
+        "illuminate/database": "^5.5",
+        "kint-php/kint": "^2.2",
+        "kint-php/kint-twig": "^1.1"
+    },
+
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.*"
+    },
+    "scripts": {
+        "lint:php": "php ./vendor/bin/phpcs  --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components",
+        "fix:php":  "php ./vendor/bin/phpcbf --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components"
+    },
+
+    "autoload": {
+        "psr-4": {"Local\\" : "local/classes/"}
+    },
+
+    "extra": {
+        "installer-paths": {
+            "./bitrix/modules/{$name}/": ["type:bitrix-d7-module", "type:bitrix-module"],
+            "./bitrix/components/{$name}/": ["type:bitrix-d7-component", "type:bitrix-component"],
+            "./bitrix/templates/{$name}/": ["type:bitrix-d7-template", "type:bitrix-theme"]
+        }
+    }
+}

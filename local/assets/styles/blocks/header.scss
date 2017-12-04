@@ -1,0 +1,8 @@
+.header {
+  &__inner {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: $screen-xl;
+    padding: $layout-block-padding;
+  }
+}

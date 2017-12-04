@@ -1,0 +1,45 @@
+{
+  "name": "bitrix-project",
+  "version": "0.0.1",
+  "description": "BitrixCMS-based project's initial structure",
+  "main": "index.js",
+  "scripts": {
+    "encore": "encore",
+    "lint:scripts": "eslint \"local/assets/scripts/**/*.+(js|vue)\" ; exit 0",
+    "lint:styles": "stylelint \"local/assets/styles/**/*.scss\" ; exit 0",
+    "fix:scripts": "eslint \"local/assets/scripts/**/*.+(js|vue)\" --fix; exit 0",
+    "fix:styles": "stylefmt -r \"local/assets/styles/**/*.scss\" ; exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/regiomedia/bitrix-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/regiomedia/bitrix-project/issues"
+  },
+  "homepage": "https://github.com/regiomedia/bitrix-project#readme",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.16.0",
+    "autoprefixer": "^6.6.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-vue": "^2.1.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "stylefmt": "^6.0.0",
+    "stylelint": "^8.0.0",
+    "stylelint-config-sass-guidelines": "^4.0.1",
+    "stylelint-order": "^0.7.0",
+    "stylelint-scss": "^2.1.0",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.2"
+  },
+  "dependencies": {
+    "vue": "^2.5.6"
+  }
+}
