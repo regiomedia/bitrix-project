@@ -1,7 +1,7 @@
 {
     "require": {
         "arrilot/bitrix-migrations": "^2.2",
-        "arrilot/bitrix-models": "^0.5.0",
+        "arrilot/bitrix-models": "^0.6.0",
         "maximaster/tools.twig": "^1.1",
         "bitrix-expert/bbc": "^1.0",
         "illuminate/database": "^5.5",
