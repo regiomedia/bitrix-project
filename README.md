@@ -24,6 +24,14 @@ composer install && npm install
 /home/bitrix/www -> /home/bitrix/projectname/sites/s1
 ```
 
+[Настроить шаблонизатор Twig](https://github.com/maximaster/tools.twig/blob/master/docs/configuration.md)
+
+[Установить модуль миграций](https://github.com/arrilot/bitrix-migrations#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0)
+
+Доустановить модуль [Базовых компонентов]((https://github.com/bitrix-expert/bbc)). Композер только загружает необходимые 
+файлы. Необходимо выполнить установку модуля в административном интефейсе: 
+
+`Marketplace > Установленные решения > ББК (bex.bbc)`
 
 
 ## Бэкенд
