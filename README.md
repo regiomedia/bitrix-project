@@ -1,7 +1,6 @@
-# bitrix-project-stub
-Заготовка для новых проектов на Битрикс
+# Bitrix Project
 
-Предыдущую версию смотреть [здесь](https://github.com/regiomedia/bitrix-project/tree/complex-v)
+Заготовка для 1C Bitrix проектов.
 
 ## Быстрый старт
 
