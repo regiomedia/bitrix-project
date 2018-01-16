@@ -37,6 +37,11 @@ Encore
 
     .enableSourceMaps(!Encore.isProduction())
 
+    // https://webpack.js.org/plugins/define-plugin/
+    .configureDefinePlugin((options) => {
+        options.DEBUG =  !Encore.isProduction();
+    })
+
     // create hashed filenames (e.g. app.abc123.css)
     .enableVersioning()
 ;
