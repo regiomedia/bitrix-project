@@ -102,6 +102,57 @@ npm run encore -- production   # запустить сборку для прод
     - [DOM-based Router](https://github.com/roots/sage/blob/master/resources/assets/scripts/util/Router.js)
     - [Vue JS](https://vuejs.org/)
     
+#### Vue
+
+Мини-модуль [vueInvoker](local/assets/scripts/util/vueInvoker.js) 
+предназначен для инициализации Vue компонентов на странице.
+Он упрощает использование Vueклассическом веб-приложении, когда нет возможности 
+использовать один "корневой" экземпляр `Vue` (Как, например, это устроено в одностраничных приложениях).
+
+#### Использование:
+
+Вывести на страницу элемент-плейсхолдер для компонента:
+
+```html
+<div class="vue-component" data-component="DemoApp" data-initial='{"test": "data"}'></div>
+```
+
+Создать соответствущий Vue-компонент (в директории `local/assets/scripts/vue/components/`:
+
+
+```html
+<template>
+    <div class="demo-app">
+        {{ hello }}
+
+        {{ initial.test }}
+
+    </div>
+</template>
+
+<script>
+    export default {
+      data() {
+        return {
+          hello: 'World',
+        };
+      },
+      props: ['initial'],
+    };
+</script>
+```
+
+Добавить его в Коллекцию `local/assets/scripts/vue/collection.js`:
+
+```js
+import DemoApp from './components/DemoApp.vue';
+
+export default {
+  DemoApp,
+};
+```
+
+    
 ### Контроль качества
 
 JS-файлы проверяются на соответствие стандарту [airbnb](https://github.com/airbnb/javascript) 
