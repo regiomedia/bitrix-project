@@ -1,7 +1,7 @@
 {
     "require": {
         "arrilot/bitrix-migrations": "^2.2",
-        "arrilot/bitrix-models": "^0.6.0",
+        "arrilot/bitrix-models": "^0.6.3",
         "maximaster/tools.twig": "^1.1",
         "bitrix-expert/bbc": "^1.0",
         "illuminate/database": "^5.5",
@@ -10,7 +10,8 @@
         "bitrix-expert/tools": "^1.5",
         "notamedia/console-jedi": "^1.2",
         "vlucas/phpdotenv": "^2.4",
-        "bitrix-expert/monolog-adapter": "^1.0"
+        "bitrix-expert/monolog-adapter": "^1.0",
+        "illuminate/events": "^5.5"
     },
 
     "require-dev": {
