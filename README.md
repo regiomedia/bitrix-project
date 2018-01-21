@@ -49,6 +49,7 @@ Composer и PSR-4 автозагрузка классов из директор�
 - [maximaster/tools.twig](https://github.com/maximaster/tools.twig)
 - [notamedia/console-jedi](https://github.com/notamedia/console-jedi)
 - [kint-php/kint](https://github.com/kint-php/kint) и [kint-php/kint-twig](https://github.com/kint-php/kint-twig)  
+- [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv)
 
 ### Контроль качества
 

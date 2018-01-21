@@ -8,7 +8,8 @@
         "kint-php/kint": "^2.2",
         "kint-php/kint-twig": "^1.1",
         "bitrix-expert/tools": "^1.5",
-        "notamedia/console-jedi": "^1.2"
+        "notamedia/console-jedi": "^1.2",
+        "vlucas/phpdotenv": "^2.4"
     },
 
     "require-dev": {
