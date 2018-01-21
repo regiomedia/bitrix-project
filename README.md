@@ -45,6 +45,7 @@ Composer и PSR-4 автозагрузка классов из директор�
 - [arrilot/bitrix-models](https://github.com/arrilot/bitrix-models)
     - [illuminate/database](https://github.com/illuminate/database)
 - [bitrix-expert/bbc](https://github.com/bitrix-expert/bbc)
+- [bitrix-expert/monolog-adapter](https://github.com/bitrix-expert/monolog-adapter)
 - [bitrix-expert/tools](https://github.com/bitrix-expert/tools)
 - [maximaster/tools.twig](https://github.com/maximaster/tools.twig)
 - [notamedia/console-jedi](https://github.com/notamedia/console-jedi)

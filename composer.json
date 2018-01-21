@@ -9,7 +9,8 @@
         "kint-php/kint-twig": "^1.1",
         "bitrix-expert/tools": "^1.5",
         "notamedia/console-jedi": "^1.2",
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "bitrix-expert/monolog-adapter": "^1.0"
     },
 
     "require-dev": {
