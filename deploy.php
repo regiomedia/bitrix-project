@@ -72,6 +72,12 @@ task ('deploy:frontend', function(){
     run('npm install && ./node_modules/@symfony/webpack-encore/bin/encore.js dev', ['timeout' => null]);
 });
 
+task('jedi:cache:clear', function () {
+    run('{{bin/php}} {{release_path}}/vendor/bin/jedi cache:clear');
+});
+
+after('deploy:symlink', 'jedi:cache:clear');
+
 
 task('deploy', [
     'deploy:prepare',
