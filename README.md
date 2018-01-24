@@ -2,18 +2,21 @@
 
 Заготовка для 1C Bitrix проектов.
 
-## Быстрый старт
+## Создание нового проекта
 
 Стандартно установить или развернуть из бекапа копию Битрикса.
 
 Клонировать репозиторий (за пределами публичной директории веб-сервера).
 
-Установить зависимости:
+Переинициализировать репозиторий: удалить директорию `.git` и выполнить `git init`. 
+
+Установить зависимости и "собрать" фронтенд:
 ```sh
-composer install && npm install
+composer install && npm install && npm run encore -- dev
 ```
 
-Перенести в корень клонированного проекта содержимое директорий `bitrix`, `upload` и (выборочно) `local`.
+Перенести в корень клонированного проекта содержимое директорий `bitrix`, `upload` и `local` 
+(не затирая файл `local/php_interface/init.php`).
 
 В директорию `sites/s1` перенести публичные файлы сайта.
 
@@ -23,14 +26,34 @@ composer install && npm install
 /home/bitrix/www -> /home/bitrix/projectname/sites/s1
 ```
 
-### Необязательно, но крайне полезно будет:
 
-[Настроить шаблонизатор Twig](https://github.com/maximaster/tools.twig/blob/master/docs/configuration.md)
+Создать файл `.env` 
 
-[Установить модуль миграций](https://github.com/arrilot/bitrix-migrations#%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0)
+```sh
+touch .env
+```
 
-Доустановить модуль [Базовых компонентов]((https://github.com/bitrix-expert/bbc)). Композер только загружает необходимые 
-файлы. Необходимо выполнить установку модуля в административном интефейсе: 
+Заполнить его данными в соответствии с файлом-образцом `.env.example`
+
+Выполнить команду
+
+```sh
+./vendor/bin/jedi env:init default
+```
+
+Эта команда скопирует в директорию `bitrix` системные файлы настроек сконфигурированные для работы с 
+[переменными окружения](https://github.com/vlucas/phpdotenv), а также настройки 
+[шаблонизатора Twig](https://github.com/maximaster/tools.twig) 
+и [логгера Monolog](https://github.com/bitrix-expert/monolog-adapter)
+
+
+Установить [модуль миграций](https://github.com/arrilot/bitrix-migrations)
+
+```sh
+php migrator install
+```
+
+Доустановить модуль [Базовых Битрикс компонентов](https://github.com/bitrix-expert/bbc). в административном интефейсе: 
 
 `Marketplace > Установленные решения > ББК (bex.bbc)`
 
