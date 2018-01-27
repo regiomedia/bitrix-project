@@ -8,8 +8,8 @@ return array (
                     // Режим отладки выключен
                     'debug' => env('DEBUG', false),
 
-                    //Кодировка соответствует кодировке продукта
-                    'charset' => SITE_CHARSET,
+                    //Кодировка
+                    'charset' => 'UTF-8',
 
                     //кеш хранится в уникальной директории. Должен быть полный абсолютный путь
                     'cache' => $_SERVER['DOCUMENT_ROOT'] . '/bitrix/cache/maximaster/tools.twig',
