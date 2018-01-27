@@ -33,7 +33,7 @@ return array (
                 'default' => array(
                     'class' => '\Monolog\Handler\StreamHandler',
                     'level' => 'DEBUG',
-                    'stream' => env('LOG_FILE_PATH')
+                    'stream' => realpath(__DIR__).'/../logs/app.log'
                 ),
                 'feedback_event_log' => array(
                     'class' => '\Bex\Monolog\Handler\BitrixHandler',
