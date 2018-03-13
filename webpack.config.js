@@ -43,6 +43,11 @@ Encore
     })
 
     // create hashed filenames (e.g. app.abc123.css)
+
+    .configureFilenames({
+      js: '[name].[hash:8].js',
+    })
+  
     .enableVersioning()
 ;
 

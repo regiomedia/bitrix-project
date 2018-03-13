@@ -4,7 +4,9 @@
 import Router from './util/Router';
 
 import common from './routes/common';
-import pageMain from './routes/pageMain';
+
+// import pageMain module on-demand only when body has `page_main` class
+const pageMain = () => import('./routes/pageMain');
 
 /** Populate Router instance with DOM routes */
 const routes = new Router({
