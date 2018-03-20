@@ -18,6 +18,7 @@ set('ssh_multiplexing', true);
 set('repository', 'ssh://git@your-git-repository-url');
 set('shared_dirs', ['bitrix', 'upload']);
 set('restart_cmd', 'sudo /usr/sbin/service apache2 restart');
+set('frontend_magic', 'npm install && npm run encore -- dev');
 
 
 task('check:uncommited', function() {
@@ -95,7 +96,7 @@ task ('deploy:frontend', function(){
     }
 
     cd('{{release_path}}');
-    run('npm install && ./node_modules/@symfony/webpack-encore/bin/encore.js dev', ['timeout' => null]);
+    run('{{frontend_magic}}', ['timeout' => null]);
 });
 
 task('jedi:cache:clear', function () {
