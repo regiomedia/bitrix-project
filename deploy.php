@@ -1,8 +1,16 @@
 <?php
 namespace Deployer;
 
+use Symfony\Component\Console\Input\InputOption;
+
 require('recipe/common.php');
 
+option(
+    'skip-git-check',
+    null,
+    InputOption::VALUE_NONE,
+    'Allows to skip checking for uncommited and unpushed changes on deployment host '
+);
 
 set('ssh_type', 'native');
 set('ssh_multiplexing', true);
@@ -13,6 +21,15 @@ set('restart_cmd', 'sudo /usr/sbin/service apache2 restart');
 
 
 task('check:uncommited', function() {
+
+    $skipCheck = input()->getOption('skip-git-check');
+
+    if ($skipCheck) {
+        writeln('<info>Checking for unconmmited/unstaged changes was skipped</info>');
+        return;
+    }
+
+
     $result = run("cd {{deploy_path}} && if [ -d current ]; then cd current && {{bin/git}} status --porcelain; fi");
     if (strlen($result) > 0) {
         throw new \RuntimeException(
@@ -26,6 +43,14 @@ task('check:uncommited', function() {
 });
 
 task('check:unpushed', function() {
+
+    $skipCheck = input()->getOption('skip-git-check');
+
+    if ($skipCheck) {
+        writeln('<info>Checking for unpushed changes was skipped</info>');
+        return;
+    }
+
     $result = run("cd {{deploy_path}} && if [ -d current ]; then cd current && {{bin/git}} log --oneline origin/{{branch}}..{{branch}}; fi");
     if (strlen($result) > 0) {
         throw new \RuntimeException(
@@ -47,6 +72,10 @@ task(
 );
 
 
+before('deploy:release', 'check:uncommited');
+before('deploy:release', 'check:unpushed');
+
+
 task('deploy:migrate', function() {
     cd('{{release_path}}');
     $output = run( '{{bin/php}} migrator migrate');
@@ -55,9 +84,6 @@ task('deploy:migrate', function() {
 task('deploy:restart', function () {
     run('{{restart_cmd}}');
 });
-
-before('deploy:release', 'check:uncommited');
-before('deploy:release', 'check:unpushed');
 
 
 task ('deploy:frontend', function(){
