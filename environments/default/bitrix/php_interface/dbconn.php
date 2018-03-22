@@ -1,6 +1,11 @@
 <?php
 
-require_once realpath(__DIR__).'/../../vendor/autoload.php';
+if (!file_exists($path = realpath(__DIR__).'/../../vendor/autoload.php')) {
+
+    $path = realpath(__DIR__).'/../../../current/vendor/autoload.php';
+}
+
+require_once($path) ;
 
 $dotenv = new Dotenv\Dotenv(realpath(__DIR__.'/../../'));
 $dotenv->load();
