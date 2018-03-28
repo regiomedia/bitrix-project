@@ -17,8 +17,10 @@ set('ssh_multiplexing', true);
 
 set('repository', 'ssh://git@your-git-repository-url');
 set('shared_dirs', ['bitrix', 'upload']);
+set('shared_files', ['.env']);
 set('restart_cmd', 'sudo /usr/sbin/service apache2 restart');
 set('frontend_magic', 'npm install && npm run encore -- dev');
+
 
 
 task('check:uncommited', function() {
