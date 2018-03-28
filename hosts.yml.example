@@ -1,0 +1,22 @@
+demo:
+  hostname: hostname-demo
+  port: port-demo
+  user: bitrix
+  identityFile: ~/.ssh/id_rsa
+  deploy_path: /home/bitrix/project_releases
+  branch: master
+  restart_cmd: "sudo /bin/systemctl restart  httpd.service && sudo /bin/systemctl restart  nginx.service"
+  stage: test
+prod:
+  hostname: hostname-prod
+  port: port-prod
+  user: bitrix
+  identityFile: ~/.ssh/id_rsa
+  deploy_path: /home/bitrix/project_releases
+  branch: production
+  restart_cmd: "sudo /bin/systemctl restart  httpd.service && sudo /bin/systemctl restart  nginx.service"
+localhost:
+  hostname: localhost
+  local: true
+  deploy_path: ./
+  stage: dev
