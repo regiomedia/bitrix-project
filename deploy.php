@@ -21,7 +21,30 @@ set('shared_files', ['.env']);
 set('restart_cmd', 'sudo /usr/sbin/service apache2 restart');
 set('frontend_magic', 'npm install && npm run encore -- dev');
 
-
+set('sync', [
+    'files' => [
+        [
+            'path' => 'bitrix',
+            'excludes' => [
+                'cache',
+                'managed_cache',
+                'stack_cache',
+                'resize_cache',
+                'tmp',
+                '.settings.php',
+                'php_interface/dbconn.php',
+                'backup/*gz*'
+            ]
+        ],
+        [
+            'path' => 'upload',
+            'excludes' => [
+                'resize_cache',
+                'tmp'
+            ]
+        ]
+    ]
+]);
 
 task('check:uncommited', function() {
 
@@ -111,6 +134,87 @@ task('jedi:cache:clear', function () {
 });
 
 after('deploy:symlink', 'jedi:cache:clear');
+
+
+option(
+    '--sync-source',
+    null,
+    InputOption::VALUE_OPTIONAL,
+    'Set the source Host from which synchronisation process will get all data'
+);
+
+
+task('sync:db', function() {
+
+    $sourceHost = host(input()->getOption('sync-source'));
+
+    $sourceHost->getRealHostname();
+
+    $getEnv = function() {
+        $host = Context::get()->getHost();
+
+        if ($host instanceof Host\Localhost) {
+            $path = '.';
+        }
+
+        else {
+            $path = '{{release_path}}';
+        }
+
+        cd($path);
+        $result = run('cat .env');
+        return parse_ini_string($result, false);
+    };
+
+    $sourceEnv = null;
+    on($sourceHost, function() use(&$sourceEnv, $getEnv){
+        $sourceEnv = $getEnv();
+    });
+
+
+    $destEnv = $getEnv();
+
+
+    $command = escapeshellcmd("ssh -p {$sourceHost->getPort()}  {$sourceHost->getUser()}@{$sourceHost->getRealHostname()} " .
+            "'mysqldump --default-character-set=utf8 -h {$sourceEnv['DB_HOST']} " .
+            "-u {$sourceEnv['DB_LOGIN']} -p{$sourceEnv['DB_PASSWORD']} {$sourceEnv['DB_NAME']} ".
+            "--skip-lock-tables --add-drop-table --single-transaction --quick' ") .
+        "|  ".
+        escapeshellcmd("mysql {$destEnv['DB_NAME']} -h {$destEnv['DB_HOST']} ".
+            "-u {$destEnv['DB_LOGIN']}  -p{$destEnv['DB_PASSWORD']}");
+
+    run($command, ['timeout' => null]);
+
+})->onStage('dev', 'test', 'stage');
+
+task('sync:files', function() {
+    $settings = get('sync');
+    $sourceHost = host(input()->getOption('sync-source'));
+    $destHost = Context::get()->getHost();
+
+    $destPath = $destHost instanceof Localhost ? '.' : '{{release_path}}';
+
+
+    foreach ($settings['files'] as $file) {
+
+        $excludes = '';
+        foreach ($file['excludes'] as $ex) {
+            $excludes .= ' --exclude='. $ex;
+        }
+
+        $command = "rsync -e 'ssh -p {$sourceHost->getPort()}' -avz --delete " .
+            "{$sourceHost->getUser()}@{$sourceHost->getRealHostname()}:" .
+            "{$sourceHost->get('deploy_path')}/current/{$file['path']}/ " .
+            "{$destPath}/{$file['path']} " .
+            "{$excludes}";
+        run(escapeshellcmd($command), ['timeout' => null]);
+    }
+})->onStage('dev', 'test', 'stage');
+
+task('sync', [
+    'sync:files',
+    'sync:db'
+]);
 
 
 task('deploy', [
