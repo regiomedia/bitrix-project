@@ -1,11 +1,11 @@
 <?php
 
-if (!file_exists($path = realpath(__DIR__).'/../../vendor/autoload.php')) {
+if (!file_exists($autoloadPathDbconn= realpath(__DIR__).'/../../vendor/autoload.php')) {
 
-    $path = realpath(__DIR__).'/../../../current/vendor/autoload.php';
+    $autoloadPathDbconn= realpath(__DIR__).'/../../../current/vendor/autoload.php';
 }
 
-require_once($path) ;
+require_once($autoloadPathDbconn) ;
 
 $dotenv = new Dotenv\Dotenv(realpath(__DIR__.'/../../'));
 $dotenv->load();
