@@ -15,7 +15,9 @@ use Symfony\Component\Console\Application;
 define("NOT_CHECK_PERMISSIONS", true);
 $_SERVER["DOCUMENT_ROOT"] = __DIR__;
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
-include $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php";
+require $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php";
+
+CModule::IncludeModule("iblock");
 
 $config = [
     'table' => 'migrations',
