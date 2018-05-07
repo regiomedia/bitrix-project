@@ -1,4 +1,6 @@
-
+/.idea/
+/upload/*
+!/upload/.htaccess
 /node_modules/
 /bower_components/
 /vendor/
@@ -13,4 +15,3 @@
 hosts.yml
 
 .env
-
