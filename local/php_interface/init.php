@@ -15,7 +15,7 @@ maximasterRegisterTwigTemplateEngine();
 
 Arrilot\BitrixModels\ServiceProvider::register();
 Arrilot\BitrixModels\ServiceProvider::registerEloquent();
-Arrilot\BitrixMigrations\Autocreate\Manager::init($_SERVER["DOCUMENT_ROOT"].'/migrations');
+Arrilot\BitrixMigrations\Autocreate\Manager::init('../../migrations');
 
 Bex\Monolog\MonologAdapter::loadConfiguration();
 
