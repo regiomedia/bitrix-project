@@ -16,5 +16,6 @@ return [
     'env-dir' => 'environments',
     'useModules' => true,
     'commands' => [
+        new \Local\Console\LinkCommand()
     ]
 ];
