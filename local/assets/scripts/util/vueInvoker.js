@@ -1,9 +1,10 @@
 /**
  * Модуль для автоматической инициализации Vue компонентов на странице сайта
  *
- * Метод `init(components)` Загружает компоненты в соответствующие элементы на странице и передает в них данные
+ * Метод `init(Vue, components)` Загружает компоненты в соответствующие элементы на странице
+ * и передает в них изначальные данные
  *
- * Например вместо блока:
+ * Например, вместо блока:
  *
  * <div class="vue-component" data-component="DemoApp" data-initial='{"test": "data"}'></div>
  *
@@ -11,14 +12,15 @@
  *
  * и в его свойство initial будет передан JSON-объект {"test": "data"}
  *
+ * Передача в метод экземпляра `Vue` позволяет предварительно его сконфигурировать:
+ * например, добавить Vuex-store и/или разнообразные плагины и миксины.
  */
 
-import Vue from 'vue';
 import logger from './logger';
 
 
 export default {
-  init(components, options) {
+  init(Vue, components, options) {
     this.options = Object.assign(this.options, options);
 
     const nodes = Array.from(document.querySelectorAll(this.options.selector));
@@ -37,9 +39,9 @@ export default {
         }
       }
 
-
       if (components[item.dataset[this.options.componentDataAttr]] !== undefined) {
         collection.push(this.createComponentInstance(
+          Vue,
           item,
           components[item.dataset[this.options.componentDataAttr]],
           initialData,
@@ -57,7 +59,7 @@ export default {
   },
 
 
-  createComponentInstance(element, component, data) {
+  createComponentInstance(Vue, element, component, data) {
     return new Vue({
       el: element,
       render(h) {
