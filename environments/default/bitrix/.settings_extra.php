@@ -14,8 +14,8 @@ return array (
                     //кеш хранится в уникальной директории. Должен быть полный абсолютный путь
                     'cache' => $_SERVER['DOCUMENT_ROOT'] . '/bitrix/cache/maximaster/tools.twig',
 
-                    //Автообновление включается только в момент очистки кеша
-                    'auto_reload' => isset( $_GET[ 'clear_cache' ] ) && strtoupper($_GET[ 'clear_cache' ]) == 'Y',
+                    //Автообновление включается только в момент очистки кеша ИЛИ в режиме дебага
+                    'auto_reload' => ((isset($_GET[ 'clear_cache' ]) && strtoupper($_GET[ 'clear_cache' ]) == 'Y')) || env('DEBUG', false),
 
                     //Автоэскейп отключен, т.к. битрикс по-умолчанию его сам делает
                     'autoescape' => false,
@@ -33,7 +33,7 @@ return array (
                 'default' => array(
                     'class' => '\Monolog\Handler\StreamHandler',
                     'level' => 'DEBUG',
-                    'stream' => realpath(__DIR__).'/../logs/app.log'
+                    'stream' => env('LOG_FILE_PATH', '/home/bitrix/logs/bitrix-project.log'),
                 ),
                 'feedback_event_log' => array(
                     'class' => '\Bex\Monolog\Handler\BitrixHandler',

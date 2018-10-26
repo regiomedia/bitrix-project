@@ -1,13 +1,38 @@
 <?php
 
+
 if (!file_exists($autoloadPath = realpath(__DIR__).'/../vendor/autoload.php')) {
 
     $autoloadPath = realpath(__DIR__).'/../../current/vendor/autoload.php';
 }
+
 require_once($autoloadPath) ;
 
 $dotenv = new Dotenv\Dotenv(realpath(__DIR__.'/../'));
 $dotenv->load();
+
+$cache = array (
+    'value' => array (
+        'type' => 'files',
+    ),
+    'readonly' => false,
+);
+
+
+if (env('USE_MEMCACHE')) {
+    $cache = array(
+        'value' =>
+            array(
+                'type' => 'memcache',
+                'memcache' => array(
+                    'host' => '127.0.0.1',
+                    'port' => '11211',
+                    'sid' => $_SERVER["DOCUMENT_ROOT"].'#site01',
+                ),
+            ),
+        'readonly' => false
+    );
+}
 
 
 return array (
@@ -69,4 +94,5 @@ return array (
                 ),
             'readonly' => true,
         ),
+    'cache' => $cache,
 );
