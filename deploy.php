@@ -130,7 +130,8 @@ task ('deploy:frontend', function(){
 });
 
 task('jedi:cache:clear', function () {
-    run('{{bin/php}} {{release_path}}/vendor/bin/jedi cache:clear');
+    cd('{{release_path}}');
+    run('{{bin/php}} ./vendor/bin/jedi cache:clear');
 });
 
 after('deploy:symlink', 'jedi:cache:clear');
