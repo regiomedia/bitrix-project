@@ -20,7 +20,7 @@ Encore
     .addStyleEntry('global', './local/assets/styles/global.scss')
 
     // allow sass/scss files to be processed
-    .enableSassLoader()
+    .enableSassLoader(() => {}, {resolveUrlLoader: false})
     .enablePostCssLoader()
 
 
