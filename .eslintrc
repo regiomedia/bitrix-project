@@ -5,8 +5,9 @@
   "rules": {
     "vue/jsx-uses-vars": 2,
     "no-param-reassign": 0,
-    "max-len": 0
-   },
+    "max-len": 0,
+    "func-names": 0
+  },
   "env": {
     "browser": "true"
   }

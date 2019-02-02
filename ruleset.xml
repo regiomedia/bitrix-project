@@ -1,11 +1,35 @@
 <?xml version="1.0"?>
 <ruleset name="RegioStandard">
     <description>RegioMedia PHP Coding Standard</description>
+
+    <!-- Основа: https://www.php-fig.org/psr/psr-2/  -->
     <rule ref="PSR2" />
+
+    <!-- Включают обязательность док-блоков для классов и функций -->
     <rule ref="Squiz.Commenting.FunctionComment" />
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
     <rule ref="Squiz.Commenting.ClassComment">
         <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>.
     </rule>
     <rule ref="Squiz.Commenting.VariableComment" />
+
+    <!-- увеличивает лимит на длину строки по сравнению с PSR-2 -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="140"/>
+            <property name="absoluteLineLimit" value="200"/>
+        </properties>
+    </rule>
+
+    <!-- предупреждает об использовании нежелательных функций (устаревшие и отладочные) -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="error" value="false" />
+            <property name="forbiddenFunctions" type="array"
+                      value="sizeof=>count,delete=>unset,d=>null,var_dump=>null" />
+        </properties>
+    </rule>
+
+    <!-- запрещает использование двойных кавычек там, где они не нужны -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
 </ruleset>

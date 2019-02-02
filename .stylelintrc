@@ -1,6 +1,8 @@
 {
   "extends": "stylelint-config-sass-guidelines",
   "rules": {
-    "max-nesting-depth": 2
+    "scss/dollar-variable-pattern": ".*",
+    "max-nesting-depth": 3,
+    "selector-class-pattern": ".*"
   }
 }

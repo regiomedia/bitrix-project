@@ -20,9 +20,11 @@ Encore
     .addStyleEntry('global', './local/assets/styles/global.scss')
 
     // allow sass/scss files to be processed
-    .enableSassLoader()
+    .enableSassLoader(() => {}, {resolveUrlLoader: false})
+    .enablePostCssLoader()
 
-    // allow legacy applications to use $/jQuery as a global variable
+
+  // allow legacy applications to use $/jQuery as a global variable
     //.autoProvidejQuery()
 
     // you can use this method to provide other common global variables,

@@ -9,6 +9,12 @@
       "include": "/local\\/(classes|components)\\/.*\\.php/i",
       "exclude": "/local\\/components\\/.*\\/templates\\/.*\\.php/i",
       "phpcs.standard": "ruleset.xml",
+      "flags": ["--encoding=utf-8"],
+      "severity": {
+        "PHPCS.W.Generic.Files.LineLength.TooLong": "advice",
+        "PHPCS.E.Generic.Files.LineLength.MaxExceeded": "advice",
+        "PHPCS.W.PSR1.Files.SideEffects.FoundWithSymbols": "advice"
+      },
       "bin": ["./vendor/bin/phpcs"]
     },
     "json": {
