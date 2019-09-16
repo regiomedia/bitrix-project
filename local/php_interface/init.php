@@ -18,4 +18,7 @@ Arrilot\BitrixModels\ServiceProvider::registerEloquent();
 
 Bex\Monolog\MonologAdapter::loadConfiguration();
 
+/** Kint необходимо отключать в боевой среде или обмен с 1С будет падать от нехватки памяти */
+Kint::$enabled_mode = env('ENV', 'prod') !== 'prod';
+
 include_once 'events.php';
