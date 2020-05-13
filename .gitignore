@@ -14,3 +14,7 @@ hosts.yml
 
 .env
 
+# Editor directories and files
+.idea
+.vscode
+

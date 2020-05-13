@@ -12,7 +12,7 @@
     "fix:styles": "stylelint \"local/assets/styles/**/*.scss\" --fix ; exit 0",
     "fix:php": "composer fix:php ; exit 0",
     "dev": "encore dev",
-    "prod": "encore prod",
+    "prod": "encore production",
     "watch": "encore dev --watch"
   },
   "repository": {
@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/regiomedia/bitrix-project#readme",
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.20.1",
+    "@symfony/webpack-encore": "^0.28.2",
+    "webpack-clean-obsolete-chunks": "^0.4.0",
     "autoprefixer": "^6.7.7",
     "babel-eslint": "^7.2.3",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -36,15 +37,16 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-vue": "^2.1.0",
     "node-sass": "^4.9.3",
-    "sass-loader": "^6.0.6",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.3.1",
     "stylelint": "^9.6.0",
     "stylelint-config-sass-guidelines": "^5.2.0",
     "stylelint-order": "^0.7.0",
     "stylelint-scss": "^2.3.0",
-    "vue-loader": "^13.7.1",
-    "vue-template-compiler": "^2.5.13"
+    "vue-loader": "^15.0.12",
+    "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
-    "vue": "^2.5.13"
+    "vue": "^2.6.11"
   }
 }

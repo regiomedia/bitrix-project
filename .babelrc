@@ -3,7 +3,7 @@
     "node_modules/**/*"
   ],
   "presets": [
-    "env"
+    "@babel/preset-env"
   ],
   "plugins": [
     "syntax-dynamic-import"

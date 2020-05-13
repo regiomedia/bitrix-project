@@ -1,5 +1,6 @@
 // webpack.config.js
 var Encore = require('@symfony/webpack-encore');
+const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
 Encore
 // directory where all compiled assets will be stored
@@ -22,6 +23,7 @@ Encore
     // allow sass/scss files to be processed
     .enableSassLoader(() => {}, {resolveUrlLoader: false})
     .enablePostCssLoader()
+    .disableSingleRuntimeChunk()
 
 
   // allow legacy applications to use $/jQuery as a global variable
@@ -49,7 +51,7 @@ Encore
     .configureFilenames({
       js: '[name].[hash:8].js',
     })
-  
+
     .enableVersioning()
 ;
 
