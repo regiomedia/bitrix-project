@@ -1,5 +1,9 @@
-// webpack.config.js
-var Encore = require('@symfony/webpack-encore');
+const path = require("path");
+const Encore = require('@symfony/webpack-encore');
+
+if(!Encore.isRuntimeEnvironmentConfigured()) {
+  Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
+}
 
 Encore
 // directory where all compiled assets will be stored
@@ -11,28 +15,27 @@ Encore
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
 
+    .disableSingleRuntimeChunk()
+
+
     // will output as web/build/app.js
     .addEntry('main', './local/assets/scripts/main.js')
-
-    .enableVueLoader()
 
     // will output as web/build/global.css
     .addStyleEntry('global', './local/assets/styles/global.scss')
 
     // allow sass/scss files to be processed
-    .enableSassLoader(() => {}, {resolveUrlLoader: false})
+    .enableSassLoader()
     .enablePostCssLoader()
+    .enableVueLoader()
 
 
   // allow legacy applications to use $/jQuery as a global variable
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // you can use this method to provide other common global variables,
     // such as '_' for the 'underscore' library
     .autoProvideVariables({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
         BX: 'BX',
         'window.BX': 'BX'
     })
@@ -41,24 +44,21 @@ Encore
 
     // https://webpack.js.org/plugins/define-plugin/
     .configureDefinePlugin((options) => {
-        options.DEBUG =  !Encore.isProduction();
+        options.DEBUG =  JSON.stringify(!Encore.isProduction());
     })
 
     // create hashed filenames (e.g. app.abc123.css)
 
-    .configureFilenames({
-      js: '[name].[hash:8].js',
+    .addExternals({
+        jquery: 'jQuery',
+        BX: 'BX'
     })
-  
-    .enableVersioning()
-;
 
-var config =  Encore.getWebpackConfig();
-config.externals = {
-    jquery: 'jQuery',
-    BX: 'BX'
-};
+    .addAliases({
+      "@": path.resolve(__dirname, "local/assets")
+    })
 
+    .enableVersioning();
 
 // export the final configuration
-module.exports = config;
+module.exports = Encore.getWebpackConfig();
