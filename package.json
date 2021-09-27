@@ -41,6 +41,11 @@
     "prettier": "^2.4.1",
     "sass": "<=1.32.13",
     "sass-loader": "^10.2.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recess-order": "^2.5.0",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-scss": "^3.21.0",
     "vue-loader": "^13.7.3",
     "vue-template-compiler": "^2.6.14"
   },
