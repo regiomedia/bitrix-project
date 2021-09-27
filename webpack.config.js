@@ -1,12 +1,12 @@
-const path = require("path");
+const path = require('path');
 const Encore = require('@symfony/webpack-encore');
 
-if(!Encore.isRuntimeEnvironmentConfigured()) {
-  Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
 Encore
-// directory where all compiled assets will be stored
+    // directory where all compiled assets will be stored
     .setOutputPath('./local/build/')
 
     // what's the public path to this directory (relative to your project's document root dir)
@@ -16,7 +16,6 @@ Encore
     .cleanupOutputBeforeBuild()
 
     .disableSingleRuntimeChunk()
-
 
     // will output as web/build/app.js
     .addEntry('main', './local/assets/scripts/main.js')
@@ -29,8 +28,7 @@ Encore
     .enablePostCssLoader()
     .enableVueLoader()
 
-
-  // allow legacy applications to use $/jQuery as a global variable
+    // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
 
     // you can use this method to provide other common global variables,
@@ -44,7 +42,7 @@ Encore
 
     // https://webpack.js.org/plugins/define-plugin/
     .configureDefinePlugin((options) => {
-        options.DEBUG =  JSON.stringify(!Encore.isProduction());
+        options.DEBUG = JSON.stringify(!Encore.isProduction());
     })
 
     // create hashed filenames (e.g. app.abc123.css)
@@ -55,7 +53,7 @@ Encore
     })
 
     .addAliases({
-      "@": path.resolve(__dirname, "local/assets")
+        '@': path.resolve(__dirname, 'local/assets')
     })
 
     .enableVersioning();

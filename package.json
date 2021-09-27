@@ -33,6 +33,7 @@
     "postcss-loader": "^4.3.0",
     "postcss-preset-env": "^6.7.0",
     "postcss-scss": "^2.1.1",
+    "prettier": "^2.4.1",
     "sass": "<=1.32.13",
     "sass-loader": "^10.2.0",
     "vue-loader": "^13.7.3",
