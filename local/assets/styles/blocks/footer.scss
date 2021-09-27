@@ -1,8 +1,8 @@
 .footer {
-  &__inner {
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 30px 50px 15px;
-    width: $screen-xl;
-  }
+    &__inner {
+        box-sizing: border-box;
+        width: $screen-xl;
+        padding: 30px 50px 15px;
+        margin: 0 auto;
+    }
 }

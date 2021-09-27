@@ -1,18 +1,18 @@
 .page {
-  &__top {
-    background: #fff;
-  }
+    &__top {
+        background: #fff;
+    }
 
-  &__middle {
-    margin: 0 auto;
-    width: $screen-xl;
-  }
+    &__middle {
+        width: $screen-xl;
+        margin: 0 auto;
+    }
 
-  &__content {
-    padding: 10px 50px;
-  }
+    &__content {
+        padding: 10px 50px;
+    }
 
-  &__bottom {
-    background: #ebebeb;
-  }
+    &__bottom {
+        background: #ebebeb;
+    }
 }

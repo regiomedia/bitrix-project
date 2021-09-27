@@ -52,6 +52,7 @@
   "dependencies": {
     "core-js": "^3.18.1",
     "lodash": "^4.17.21",
+    "normalize.css": "^8.0.1",
     "vue": "^2.6.14"
   }
 }

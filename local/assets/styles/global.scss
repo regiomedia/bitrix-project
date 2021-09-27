@@ -1,6 +1,8 @@
 @import 'variables';
 @import 'mixins';
-@import 'normalize';
+
+@import '~normalize.css/normalize.css';
+
 @import 'blocks/page';
 @import 'blocks/header';
 @import 'blocks/footer';

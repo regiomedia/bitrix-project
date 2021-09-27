@@ -1,7 +1,7 @@
 .header {
-  &__inner {
-    box-sizing: border-box;
-    margin: 0 auto;
-    max-width: $screen-xl;
-  }
+    &__inner {
+        box-sizing: border-box;
+        max-width: $screen-xl;
+        margin: 0 auto;
+    }
 }
