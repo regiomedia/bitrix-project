@@ -1,0 +1,11 @@
+[production]
+cover 80% in RU
+>= 0.5% in RU
+last 2 versions
+not explorer <= 11
+not dead
+not op_mini all
+
+[development]
+last 2 Chrome versions
+last 2 Firefox versions

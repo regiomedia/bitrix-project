@@ -18,56 +18,54 @@
 
 import logger from './logger';
 
-
 export default {
-  init(Vue, components, options) {
-    this.options = Object.assign(this.options, options);
+    init(Vue, components, options) {
+        this.options = Object.assign(this.options, options);
 
-    const nodes = Array.from(document.querySelectorAll(this.options.selector));
+        const nodes = Array.from(document.querySelectorAll(this.options.selector));
 
+        const collection = [];
 
-    const collection = [];
+        nodes.forEach((item) => {
+            let initialData = item.dataset[this.options.initialDataAttr];
 
-    nodes.forEach((item) => {
-      let initialData = item.dataset[this.options.initialDataAttr];
+            if (initialData !== undefined) {
+                try {
+                    initialData = JSON.parse(initialData);
+                } catch (e) {
+                    logger.warn(e);
+                }
+            }
 
-      if (initialData !== undefined) {
-        try {
-          initialData = JSON.parse(initialData);
-        } catch (e) {
-          logger.warn(e);
-        }
-      }
-
-      if (components[item.dataset[this.options.componentDataAttr]] !== undefined) {
-        collection.push(this.createComponentInstance(
-          Vue,
-          item,
-          components[item.dataset[this.options.componentDataAttr]],
-          initialData,
-        ));
-      }
-    });
-
-    return collection;
-  },
-
-  options: {
-    selector: '.vue-component',
-    componentDataAttr: 'component',
-    initialDataAttr: 'initial',
-  },
-
-
-  createComponentInstance(Vue, element, component, data) {
-    return new Vue({
-      el: element,
-      render(h) {
-        return h(component, {
-          props: { initial: data },
+            if (components[item.dataset[this.options.componentDataAttr]] !== undefined) {
+                collection.push(
+                    this.createComponentInstance(
+                        Vue,
+                        item,
+                        components[item.dataset[this.options.componentDataAttr]],
+                        initialData
+                    )
+                );
+            }
         });
-      },
-    });
-  },
 
+        return collection;
+    },
+
+    options: {
+        selector: '.vue-component',
+        componentDataAttr: 'component',
+        initialDataAttr: 'initial'
+    },
+
+    createComponentInstance(Vue, element, component, data) {
+        return new Vue({
+            el: element,
+            render(h) {
+                return h(component, {
+                    props: { initial: data }
+                });
+            }
+        });
+    }
 };
