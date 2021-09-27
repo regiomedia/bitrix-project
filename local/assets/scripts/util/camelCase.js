@@ -5,7 +5,10 @@
  * @return {string} String converted to camel-case, e.g., camelCaseIsHard
  *
  */
-export default str => `${str.charAt(0).toLowerCase()}${str.replace(/[\W_]/g, '|').split('|')
-  .map(part => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
-  .join('')
-  .slice(1)}`;
+export default (str) =>
+    `${str.charAt(0).toLowerCase()}${str
+        .replace(/[\W_]/g, '|')
+        .split('|')
+        .map((part) => `${part.charAt(0).toUpperCase()}${part.slice(1)}`)
+        .join('')
+        .slice(1)}`;

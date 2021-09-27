@@ -10,6 +10,4 @@
  *
  */
 
-export default {
-
-};
+export default {};
