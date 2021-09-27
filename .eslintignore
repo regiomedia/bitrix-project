@@ -1,0 +1,8 @@
+node_modules/*
+bitrix/*
+sites/*
+vendor/*
+upload/*
+logs/*
+environments/*
+local/build/*
